@@ -1,0 +1,50 @@
+// Ini harus muncul di atas sebelum plugins block
+buildscript {
+    ext.kotlin_version = '1.5.31' // Pastikan ini adalah versi stabil terbaru
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4' // Gunakan versi yang kompatibel
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.warung"
+    compileSdk = 33 // Pastikan ini sesuai dengan yang diinginkan
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.warung"
+        minSdk = 21 // atau versi SDK minimal yang diperlukan
+        targetSdk = 33 // atau versi SDK target yang diinginkan
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
